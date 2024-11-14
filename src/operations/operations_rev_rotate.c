@@ -12,7 +12,7 @@
 
 #include "../../push_swap.h"
 
-static int	*rev_rot_operation(int *num, int top)
+/* static int	*rev_rot_operation(int *num, int top)
 {
 	int	i;
 	int	*numo;
@@ -26,6 +26,25 @@ static int	*rev_rot_operation(int *num, int top)
 	}
 	numo[i] = num[0];
 	return (numo);
+} */
+
+static int *rev_rot_operation(int *num, int top)
+{
+    int temp;
+    int i;
+
+    if (top > 0)
+	{
+		temp = num[0];
+		i = 0;
+		while (i < top)
+		{
+			num[i] = num[i + 1];
+			i++;
+		}
+		num[top] = temp;
+	}
+	return (num);
 }
 
 void	rev_rot(char *str, t_stack *t)

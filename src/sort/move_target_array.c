@@ -60,8 +60,7 @@ char	**generate_moves(int top, char *flag)
 	i = 0;
 	while (i < top)
 	{
-		moves[i] = fill_moves(get_move_count(i, top),
-				get_move_type(i, top, flag));
+		moves[i] = fill_moves(get_move_count(i, top), get_move_type(i, top, flag));
 		if (!moves[i])
 		{
 			while (i > 0)

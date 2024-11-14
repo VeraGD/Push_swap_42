@@ -1,12 +1,28 @@
 #include "../../push_swap.h"
 
+static t_stack     *ini_target_cheap(t_stack *t)
+{
+    int i;
+    int j;
+
+    i = t->topa;
+    j = 0;
+    while (i >= 0)
+    {
+        t->target[j] = calculate_target_minima(t->stack_a[j], t);
+        i--;
+        j++;
+    }
+    t = target_min(t);
+    return (t);
+}
+
 t_stack     *inicialization(int *num, int argc, char **argv)
 {
     t_stack     *t;
     int     *nums;
     int len;
 
-    // comprobacion memoria
     t = (t_stack *)malloc(sizeof(t_stack));
     nums = ft_reverse(num, len_stack(argc, argv));
     if (!nums || !t)
@@ -26,6 +42,7 @@ t_stack     *inicialization(int *num, int argc, char **argv)
         free(t);
         return (NULL);
     }
+    t = ini_target_cheap(t);
     return (t);
 }
 
@@ -71,7 +88,7 @@ t_stack     *choose_sort(t_stack *t)
             t = sort_four(t);
         else if (len == 5)
             t = sort_five(t);
-        else if (len > 5 && len <= 10)
+        else if (len > 5)
             t = turk_algorithm(t);
     }
     return (t);

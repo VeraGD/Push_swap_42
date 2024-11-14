@@ -1,10 +1,9 @@
 #include "../../push_swap.h"
 
-t_stack *aux_move_a(char **move_a, char **move_b, int j, int i, t_stack *t)
+/* t_stack *aux_move_a(char **move_a, char **move_b, int j, int i, t_stack *t)
 {
     if (move_a != NULL)
     {
-        ft_printf("entra a\n");
         while (move_a[j] != NULL)
         {
             if (move_a[j][0] == 'r' && move_a[j][1] == 'r')
@@ -71,7 +70,116 @@ t_stack    *made_move(t_stack *t, char **move_b, char **move_a)
         }
     }
     return (aux_move_a(move_a,move_b, j, i, t));
+} */
+
+t_stack *aux_move_a(char **move_a, char **move_b, int j, int i, t_stack *t)
+{
+    if (move_a != NULL)
+    {
+        while (move_a[j] != NULL)  // Aseguramos que no salimos del rango
+        {
+            if (move_a[j][0] == 'r' && move_a[j][1] == 'r')
+                rev_rot("rra", t);
+            else if (move_a[j][0] == 'r')
+                rot("ra", t);
+            j++;
+        }
+    }
+    if (move_b != NULL)
+    {
+        while (move_b[i] != NULL)  // Aseguramos que no salimos del rango
+        {
+            if (move_b[i][0] == 'r' && move_b[i][1] == 'r')
+                rev_rot("rrb", t);
+            else if (move_b[i][0] == 'r')
+                rot("rb", t);
+            i++;
+        }
+    }
+    return (t);
 }
+
+t_stack *made_move(t_stack *t, char **move_b, char **move_a)
+{
+    int i = 0, j = 0;
+
+    if (move_a && move_b)
+    {
+        while (move_b[i])
+        {
+            if (move_a[j])
+            {
+                if (move_b[i][0] == 'r' && move_b[i][1] == 'r')
+                    handle_rrr(t, move_a, move_b, &i, &j);
+                else if (move_b[i][0] == 'r')
+                    handle_r(t, move_a, move_b, &i, &j);
+            }
+            else
+            {
+                if (move_b[i][0] == 'r' && move_b[i][1] == 'r')
+                    rev_rot("rrb", t);
+                else if (move_b[i][0] == 'r')
+                    rot("rb", t);
+                i++;
+            }
+        }
+    }
+    return (aux_move_a(move_a, move_b, j, i, t));
+}
+
+/* t_stack *made_move(t_stack *t, char **move_b, char **move_a)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    if (move_a != NULL && move_b != NULL)
+    {
+        while (move_b[i] != NULL)
+        {
+            if (move_a[j] != NULL)
+            {
+                if (move_b[i][0] == 'r' && move_b[i][1] == 'r')
+                {
+                    if (move_a[j][0] == 'r' && move_a[j][1] == 'r')
+                    {
+                        j = aux_rrr(t, j);
+                        i++;
+                    }
+                    else
+                    {
+                        rev_rot("rrb", t);
+                        i++;
+                    }
+                }
+                else if (move_b[i][0] == 'r')
+                {
+                    if (move_a[j][0] == 'r' && move_a[j][1] == 'a')
+                    {
+                        j = aux_rr(t, j);
+                        i++;
+                    }
+                    else
+                    {
+                        rot("rb", t);
+                        i++;
+                    }
+                }
+            }
+            else
+            {
+                if (move_b[i][0] == 'r' && move_b[i][1] == 'r')
+                    rev_rot("rrb", t);
+                else if (move_b[i][0] == 'r')
+                    rot("rb", t);
+                i++;
+            }
+        }
+    }
+    return (aux_move_a(move_a, move_b, j, i, t));
+} */
+
 
 t_stack    *move_top_and_push(t_stack *t, int index)
 {
@@ -80,18 +188,22 @@ t_stack    *move_top_and_push(t_stack *t, int index)
     char **move_a;
 
     moves = generate_moves(t->topb, "b"); // muev los del b
-    //ft_printf("ss %s\n", moves[t->target[index]]);
+    //ft_printf("moves %s\n", moves[t->target[index]]);
     if (moves[t->target[index]] != NULL)
         move_b = ft_split(moves[t->target[index]], ' ');
     else
         move_b = NULL;
+    free_split(moves);
     moves = generate_moves(t->topa, "a");
     //ft_printf("ss %s\n", moves[index]);
     if (moves[index] != NULL)
         move_a = ft_split(moves[index], ' ');
     else
         move_a = NULL;
+    free_split(moves);
     t = made_move(t, move_b, move_a);
     pb(t);
+    free_split(move_b);
+    free_split(move_a);
     return (t);
 }

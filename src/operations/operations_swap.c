@@ -12,7 +12,7 @@
 
 #include "../../push_swap.h"
 
-static int	*swap_operation(int *num, int top)
+/* static int	*swap_operation(int *num, int top)
 {
 	int	temp;
 
@@ -20,6 +20,19 @@ static int	*swap_operation(int *num, int top)
 	num[top] = num[top - 1];
 	num[top - 1] = temp;
 	return (num);
+} */
+
+static int *swap_operation(int *num, int top)
+{
+    int temp;
+
+    if (top > 0)
+    {
+        temp = num[top];
+        num[top] = num[top - 1];
+        num[top - 1] = temp;
+    }
+    return (num);
 }
 
 void	swap(char *str, t_stack *t)

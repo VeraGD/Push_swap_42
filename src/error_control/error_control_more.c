@@ -43,28 +43,23 @@ static int	one_number_str(char *str)
 int	*check_more_argv(int argc, char **argv)
 {
 	int	i;
-	int	j;
 	int	*num;
-	int	len;
 
 	i = 1;
-	j = 0;
-	len = argc - 1;
 	num = (int *)malloc((argc - 1) * sizeof(int));
 	if (!num)
 		return (NULL);
 	while (argv[i])
 	{
-		num[j] = one_number_str(argv[i]);
-		if (num[j] == 0 && argv[i][0] != '0')
+		num[i - 1] = one_number_str(argv[i]);
+		if (num[i - 1] == 0 && argv[i][0] != '0')
 		{
 			free(num);
 			return (NULL);
 		}
 		i++;
-		j++;
 	}
-	if (check_double(num, len) == 1)
+	if (check_double(num, argc - 1) == 1)
 	{
 		free(num);
 		return (NULL);

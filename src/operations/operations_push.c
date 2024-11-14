@@ -12,7 +12,7 @@
 
 #include "../../push_swap.h"
 
-void	pa(t_stack *t)
+/* void	pa(t_stack *t)
 {
 	int	temp;
 	int	*num;
@@ -34,9 +34,21 @@ void	pa(t_stack *t)
 	t->topa = top;
 	t->stack_b = numb;
 	t->topb = topb;
+} */
+
+void pa(t_stack *t)
+{
+    int temp;
+
+	temp = t->stack_b[t->topb];
+	t->topa++;
+	t->stack_a[t->topa] = temp;
+	t->stack_b[t->topb] = 0;
+	t->topb--;
+	ft_printf("pa\n");
 }
 
-void	pb(t_stack *t)
+/* void	pb(t_stack *t)
 {
 	int	temp;
 	int	*num;
@@ -58,6 +70,21 @@ void	pb(t_stack *t)
 	t->topa = top;
 	t->stack_b = numb;
 	t->topb = topb;
+} */
+
+void pb(t_stack *t)
+{
+    int temp;
+    
+    if (t->topa >= 0)
+    {
+        temp = t->stack_a[t->topa];
+        t->topb++;
+        t->stack_b[t->topb] = temp;
+		t->stack_a[t->topa] = 0;
+        t->topa--;
+        ft_printf("pb\n");
+    }
 }
 
 /* void	pa(t_stack *a, t_stack *b)

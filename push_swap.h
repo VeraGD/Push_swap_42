@@ -50,7 +50,10 @@ t_stack     *choose_sort(t_stack *t);
 
 t_stack *turk_algorithm(t_stack *t);
 t_stack *calculate_target_min_all(t_stack *t);
+//int    *array_calculate_odd_cheap(int topb);
+//int    *array_calculate_pair_cheap(int topb);
 t_stack *target_min(t_stack *t);
+t_stack *target_max(t_stack *t);
 
 void	rev_rot(char *str, t_stack *t);
 void	rot(char *str, t_stack *t);
@@ -61,4 +64,11 @@ void    pb(t_stack *t);
 char	**generate_moves(int top, char *flag);
 t_stack    *move_top_and_push(t_stack *t, int index);
 
+t_stack    *move_target_max(t_stack *t, int index);
+int     get_min_final(t_stack *t);
+t_stack     *get_top(int min, t_stack *t);
+
+int    calculate_target_minima(int a, t_stack *t);
+void handle_rrr(t_stack *t, char **move_a, char **move_b, int *i, int *j);
+void handle_r(t_stack *t, char **move_a, char **move_b, int *i, int *j);
 #endif
