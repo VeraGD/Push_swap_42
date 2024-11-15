@@ -4,6 +4,27 @@ Push_swap 42
 
 Proyect in progress :part_alternation_mark:
 
+### Project description
+Program called push_swap which will receive as argument the stack a in the format of a list of integers. The first argument must be the one on top of the stack. The program must display the shortest possible list of instructions to sort the stack a, from smallest to largest, where the smallest number is at the top of the stack, as well as sort the stack a. This can be done by using another stack called b.
+
+### Available operations
+- **sa** swap a: Swaps the first two elements of stack a.
+- **sb** swap b: Swaps the first two elements of stack b.
+- **ss** swap a and swap b at the same time. 
+- **pa** push a: Takes the first element from stack b and puts it first in stack a. Does nothing if b is empty. 
+- **pb** push b: Takes the first element from stack a and puts it first in stack b. Does nothing if a is empty. 
+- **ra** rotate a: Moves up all elements in stack a one position, so that the first element becomes the last. 
+- **rb** rotate b: Moves up all elements in stack b one position, so that the first element becomes the last. 
+- **rr** ra and rb at the same time. 
+- **rra** reverse rotate a: Shifts down all elements in stack a by one position, so that the last element becomes the first element. 
+- **rrb** reverse rotate b: Shifts down all elements in stack b by one position, so that the last element becomes the first element. 
+- **rrr** rra and rrb at the same time.
+
+### Error control
+- Integers within the range of int.
+- No repeated elements.
+- 
+
 ### Sorting algorithm developed
 #### Turk Algorithm (first part) and mi own algorithm combined
 - Push the two elements at the top of the stack a to stack b.
