@@ -79,5 +79,5 @@ To check the number of operations performed.
 ```
 
 ### 6. Efficiency
-- Sorting 100 numbers: less than 700 operations  ✅
-- Sorting 500 numbers: between 5500 and 7000 operations
+- Sorting 100 numbers: less than 700 operations   ✅
+- Sorting 500 numbers: between 5500 and 7000 operations  :part_alternation_mark:
