@@ -1,8 +1,4 @@
 # Push_swap_42
-Push_swap 42
-
-
-Proyect in progress :part_alternation_mark:
 
 ### 1. Project description
 Program called push_swap which will receive as argument the stack a in the format of a list of integers. The first argument must be the one on top of the stack. The program must display the shortest possible list of instructions to sort the stack a, from smallest to largest, where the smallest number is at the top of the stack, as well as sort the stack a. This can be done by using another stack called b.
@@ -59,4 +55,29 @@ If there is only one element nothing is done.
 ### 5. How to execute the programme
 - Clone the repository.
 - Execute the command make.
-- Execute the program with the desired arguments as follows:
+- Execute the program with the desired arguments as follow.
+
+
+With an argument enclosed in double quotes (numbers separated by spaces):
+```ruby
+./push_swap "<random numbers>"
+```
+
+With several arguments in the form of numbers separated by spaces:
+
+    
+```ruby
+./push_swap <random numbers>
+```
+
+
+To check the number of operations performed.
+
+    
+```ruby
+./push_swap <random numbers> | wc -l
+```
+
+### 6. Efficiency
+- Sorting 100 numbers: less than 700 operations
+- Sorting 500 numbers: between 5500 and 7000 operations
