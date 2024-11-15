@@ -12,90 +12,56 @@ NAME        := push_swap
 # CFLAGS    compiler flags
 # CPPFLAGS  preprocessor flags
 
-SRC_DIR     := src
-OBJ_DIR     := obj
-LIBFT_DIR   := src/libft
-PRINTF_DIR  := src/printf
+INCLUDE		:= push_swap.h
+LIBFT		:= src/libft_/libft.a
+PRINTF		:= src/printf_/libftprintf.a
 SRCS        := \
-			operations/operations_push.c \
-			operations/operations_rev_rotate.c \
-			operations/operations_rotate.c \
-			operations/operations_swap.c \
-			sort/calculate_target.c \
-			sort/sort_big.c \
-			sort/sort_two_five.c \
-			error_control/error_control_more.c \
-			error_control/error_control_str.c \
-			initialization/ini.c \
-			initialization/main.c \
+			src/operations/operations_push.c \
+			src/operations/operations_rev_rotate.c \
+			src/operations/operations_rotate.c \
+			src/operations/operations_swap.c \
+			src/sort/calculate_target.c \
+			src/sort/calculate_cheap.c \
+			src/sort/generate_moves.c \
+			src/sort/get_min_to_top.c \
+			src/sort/move_target.c \
+			src/sort/move_target_aux.c \
+			src/sort/sort_big.c \
+			src/sort/sort_two_five.c \
+			src/error_control/error_checks.c \
+			src/error_control/error_control_argv.c \
+			src/error_control/error_control_str.c \
+			src/initialization/ini.c \
+			src/initialization/main.c \
+			src/utils/ps_free.c \
+			src/utils/ps_utils.c \
 
-SRCS        := $(SRCS:%=$(SRC_DIR)/%)
-OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-LIBFT       := $(LIBFT_DIR)/libft.a
-PRINTF       := $(PRINTF_DIR)/libftprintf.a
-
+OBJS        := $(SRCS:.c=.o)
 CC          := cc
 CFLAGS      := -Wall -Wextra -Werror
-CPPFLAGS    := -I $(LIBFT_DIR) -I $(PRINTF_DIR)
 
-
-#------------------------------------------------#
-#   UTENSILS                                     #
-#------------------------------------------------#
-# RM        force remove
-# MAKEFLAGS make flags
-# DIR_DUP   duplicate directory tree
-
-RM          := rm -f
-MAKEFLAGS   += --no-print-directory
-DIR_DUP     = mkdir -p $(@D)
-
-RED		=	\033[91;1m
-GREEN	=	\033[92;1m
-YELLOW	=	\033[93;1m
-BLUE	=	\033[94;1m
-PINK	=	\033[95;1m
-CLEAR	=	\033[0m
-
-#------------------------------------------------#
-#   RECIPES                                      #
-#------------------------------------------------#
-# all       default goal
-# $(NAME)   linking .o -> binary
-# %.o       compilation .c -> .o
-# clean     remove .o
-# fclean    remove .o + binary
-# re        remake default goal
+GREEN = \033[1;32m
+RED = \033[1;31m
+YELLOW = \033[1;33m
+RESET = \033[0m
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PRINTF) $(OBJS)
-	@echo "$(BLUE)Make all$(CLEAR)\n$(PINK)Compiling push_swap.$(CLEAR)"
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -L$(PRINTF_DIR) -lft -o $(NAME)
-	$(info CREATED $(NAME))
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(DIR_DUP)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-	$(info CREATED $@)
-
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR) -C $(PRINTF_DIR)
+$(NAME): $(OBJS) $(INCLUDE)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
+	@echo "${GREEN}Push_swap compilation OK${RESET}"
+	
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "$(BLUE)Make clean/fclean$(CLEAR)\n$(RED)Removing all compiled files.$(CLEAR)"
-	@$(MAKE) clean -C $(LIBFT_DIR) -C $(PRINTF_DIR)
-	$(RM) $(OBJS)
+	-rm -f $(OBJS)
+	@echo "${YELLOW}All objects removed${RESET}"
 
 fclean: clean
-	@$(MAKE) fclean -C $(LIBFT_DIR) -C $(PRINTF_DIR)
-	$(RM) $(NAME)
+	-rm -f $(NAME)
+	@echo "${RED}Push_swap removed${RESET}"
 
 re: fclean all
 
-#------------------------------------------------#
-#   SPEC                                         #
-#------------------------------------------------#
-
 .PHONY: clean fclean re all
-.SILENT:

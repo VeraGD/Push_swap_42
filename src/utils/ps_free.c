@@ -6,7 +6,7 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 18:25:40 by veragarc          #+#    #+#             */
-/*   Updated: 2024/10/31 18:25:52 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:57:25 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	free_struct(t_stack *struct_ps)
 
 void	free_moves(char **moves, int top)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (i < top)
 	{
 		free(moves[i]);

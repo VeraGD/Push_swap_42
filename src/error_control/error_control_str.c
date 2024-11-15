@@ -6,56 +6,11 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 15:11:09 by veragarc          #+#    #+#             */
-/*   Updated: 2024/10/31 15:22:51 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:17:40 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
-
-/* int	*numbers_string(char *str)
-{
-	int		*num;
-	char	**str_num;
-	int		i;
-
-	i = 0;
-	str_num = ft_split(str, ' ');
-	if (check_signs(str_num) == 1 || check_caracter(str) == 1)
-	{
-		free_split(str_num);
-		return (NULL);
-	}
-	else //if (ft_strlen_double(str_num) <= 10)
-	{
-		num = (int *)malloc((ft_strlen_double(str_num)) * sizeof(int));
-		if (!num)
-		{
-			free_split(str_num);
-			return (NULL);
-		}
-		while (str_num[i])
-		{
-			num[i] = ft_atoi(str_num[i]);
-			if (num[i] == 0 && str_num[i][0] != '0')
-			{
-				free(num);
-				free_split(str_num);
-				return (NULL);
-			}
-			i++;
-		}
-		if (check_double(num, ft_strlen_double(str_num)) == 1)
-		{
-			free(num);
-			free_split(str_num);
-			return (NULL);
-		}
-		free_split(str_num);
-		return (num);
-	}
-	free_split(str_num);
-	return (NULL);
-} */
 
 static int	check_signs(char **str)
 {
@@ -81,55 +36,53 @@ static int	check_signs(char **str)
 	return (0);
 }
 
-static int check_errors(char **str_num, char *str)
+static int	check_errors(char **str_num, char *str)
 {
-    if (check_signs(str_num) == 1 || check_caracter(str) == 1)
-        return (1);
-    return (0);
+	if (check_signs(str_num) == 1 || check_caracter(str) == 1)
+		return (1);
+	return (0);
 }
 
-static int *convert_to_numbers(char **str_num)
+static int	*convert_to_numbers(char **str_num)
 {
-    int *num;
-    int i = 0;
+	int	*num;
+	int	i;
 
-    num = (int *)malloc(ft_strlen_double(str_num) * sizeof(int));
-    if (!num)
-        return (NULL);
-    
-    while (str_num[i])
-    {
-        num[i] = ft_atoi(str_num[i]);
-        if (num[i] == 0 && str_num[i][0] != '0')
-        {
-            free(num);
-            return (NULL);
-        }
-        i++;
-    }
-    return (num);
+	i = 0;
+	num = (int *)malloc(ft_strlen_double(str_num) * sizeof(int));
+	if (!num)
+		return (NULL);
+	while (str_num[i])
+	{
+		num[i] = ft_atoi(str_num[i]);
+		if (num[i] == 0 && str_num[i][0] != '0')
+		{
+			free(num);
+			return (NULL);
+		}
+		i++;
+	}
+	return (num);
 }
 
-int *numbers_string(char *str)
+int	*numbers_string(char *str)
 {
-    char **str_num;
-    int *num;
+	char	**str_num;
+	int		*num;
 
-    str_num = ft_split(str, ' ');
-    if (check_errors(str_num, str))
-    {
-        free_split(str_num);
-        return (NULL);
-    }
-
-    num = convert_to_numbers(str_num);
-    if (!num || check_double(num, ft_strlen_double(str_num)) == 1)
-    {
-        free(num);
-        free_split(str_num);
-        return (NULL);
-    }
-
-    free_split(str_num);
-    return (num);
+	str_num = ft_split(str, ' ');
+	if (check_errors(str_num, str))
+	{
+		free_split(str_num);
+		return (NULL);
+	}
+	num = convert_to_numbers(str_num);
+	if (!num || check_double(num, ft_strlen_double(str_num)) == 1)
+	{
+		free(num);
+		free_split(str_num);
+		return (NULL);
+	}
+	free_split(str_num);
+	return (num);
 }

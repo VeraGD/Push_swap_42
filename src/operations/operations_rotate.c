@@ -6,64 +6,29 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:49:35 by veragarc          #+#    #+#             */
-/*   Updated: 2024/10/31 16:51:11 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:02:39 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-/* static int	*rot_operation(int *num, int top)
+static int	*rot_operation(int *num, int top)
 {
+	int	temp;
 	int	i;
-	int	*numo;
 
-	i = 1;
-	numo = (int *)malloc((top + 1) * sizeof(int));
-	numo[0] = num[top];
-	while (i < top + 1)
+	if (top > 0)
 	{
-		numo[i] = num[i - 1];
-		i++;
-	}
-	return (numo);
-} */
-
-/* static int *rot_operation(int *num, int top)
-{
-    int temp;
-    int i;
-
-    if (top > 0)
-	{
-		temp = num[0];
-		i = 1;
-		while (i < top)
+		temp = num[top];
+		i = top;
+		while (i > 0)
 		{
 			num[i] = num[i - 1];
-			i++;
+			i--;
 		}
-		num[top] = temp;
+		num[0] = temp;
 	}
 	return (num);
-} */
-
-static int *rot_operation(int *num, int top)
-{
-    int temp;
-    int i;
-
-    if (top > 0)
-    {
-        temp = num[top];
-        i = top;
-        while (i > 0)
-        {
-            num[i] = num[i - 1];
-            i--;
-        }
-        num[0] = temp;
-    }
-    return (num);
 }
 
 void	rot(char *str, t_stack *t)

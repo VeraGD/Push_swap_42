@@ -6,34 +6,18 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 16:12:59 by veragarc          #+#    #+#             */
-/*   Updated: 2024/10/31 16:49:03 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:00:59 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-/* static int	*rev_rot_operation(int *num, int top)
+static int	*rev_rot_operation(int *num, int top)
 {
+	int	temp;
 	int	i;
-	int	*numo;
 
-	i = 0;
-	numo = (int *)malloc((top + 1) * sizeof(int));
-	while (i < top)
-	{
-		numo[i] = num[i + 1];
-		i++;
-	}
-	numo[i] = num[0];
-	return (numo);
-} */
-
-static int *rev_rot_operation(int *num, int top)
-{
-    int temp;
-    int i;
-
-    if (top > 0)
+	if (top > 0)
 	{
 		temp = num[0];
 		i = 0;
@@ -49,7 +33,7 @@ static int *rev_rot_operation(int *num, int top)
 
 void	rev_rot(char *str, t_stack *t)
 {
-	int *numo;
+	int	*numo;
 
 	if (str[0] == 'r' && str[1] == 'r' && str[2] == 'a')
 	{
