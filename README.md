@@ -4,10 +4,10 @@ Push_swap 42
 
 Proyect in progress :part_alternation_mark:
 
-### Project description
+### 1. Project description
 Program called push_swap which will receive as argument the stack a in the format of a list of integers. The first argument must be the one on top of the stack. The program must display the shortest possible list of instructions to sort the stack a, from smallest to largest, where the smallest number is at the top of the stack, as well as sort the stack a. This can be done by using another stack called b.
 
-### Available operations
+### 2. Available operations
 - **sa** swap a: Swaps the first two elements of stack a.
 - **sb** swap b: Swaps the first two elements of stack b.
 - **ss** swap a and swap b at the same time. 
@@ -20,13 +20,30 @@ Program called push_swap which will receive as argument the stack a in the forma
 - **rrb** reverse rotate b: Shifts down all elements in stack b by one position, so that the last element becomes the first element. 
 - **rrr** rra and rrb at the same time.
 
-### Error control
+### 3. Error control
 - Integers within the range of int.
 - No repeated elements.
-- 
+- No characters.
+- No multiple signs in a number (and only before it).
+- Control input with a single argument, a string consisting of numbers separated by spaces.
+- Control input with several arguments, which are all numbers.
+- It does not control a mixed input between a string of several numbers and single numbers as further arguments.
 
-### Sorting algorithm developed
-#### Turk Algorithm (first part) and mi own algorithm combined
+If it finds any element that does not comply with the above it prints Error and a line break.
+
+If no arguments are entered, it returns control to the user, without printing anything.
+
+If everything is correct, the operations performed to sort the stack will be printed followed by a line break. If the elements are already sorted, nothing is printed, since it is checked if the stack is sorted so that the algorithm is not executed.
+
+
+
+### 4. Sorting algorithm developed
+#### 4.1. Less than 5 elements: case-by-case sorting
+From 2 to 5 elements are ordered directly, checking each of the possibilities.
+
+If there is only one element nothing is done.
+
+#### 4.2. More than 5 elements: Turk Algorithm (first part) and mi own algorithm combined
 - Push the two elements at the top of the stack a to stack b.
 - Sort the two elements of stack b, putting the minor element below.
 - Until there are no elements in stack a:
@@ -38,3 +55,8 @@ Program called push_swap which will receive as argument the stack a in the forma
     - Also, do a pb to move the element on top a (the selected one) to stack b, placing it on top of the target in b.
 - Pass all elements from stack b to stack a. That is, make as many pa as there are elements in stack b.
 - Find what is the minimum element in stack a, and make it become the top of the stack.
+
+### 5. How to execute the programme
+- Clone the repository.
+- Execute the command make.
+- Execute the program with the desired arguments as follows:
