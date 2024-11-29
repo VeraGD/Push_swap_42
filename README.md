@@ -52,7 +52,29 @@ If there is only one element nothing is done.
 - Pass all elements from stack b to stack a. That is, make as many pa as there are elements in stack b.
 - Find what is the minimum element in stack a, and make it become the top of the stack.
 
-### 5. How to execute the programme
+### 5. Structure used
+
+```ruby
+typedef struct s_push
+{
+	int	*stack_a;
+	int	*stack_b;
+	int	*target;
+	int	*cheap;
+	int	topa;
+	int	topb;
+}	t_stack;
+```
+- **stack_a** -> stack a
+- **stack_b** -> stack b
+- **target** -> indexes of the targtes from a to b, sorted according to the indexation in a (element of a in position 0,  index of target in position 0).
+- **cheap** -> number of operations needed to move element a from the same index to the top, and to move its target in b to the top, plus a corresponding extra move pb.
+- **topa** ->  index of the top of the stack a element.
+- **topb** -> index of the top of the stack b element.
+
+Therefore, the algorithm is implemented using arrays of ints instead of linked lists.
+
+### 6. How to execute the programme
 - Clone the repository.
 - Execute the command make.
 - Execute the program with the desired arguments as follow.
@@ -78,6 +100,6 @@ To check the number of operations performed.
 ./push_swap <random numbers> | wc -l
 ```
 
-### 6. Efficiency
+### 7. Efficiency
 - Sorting 100 numbers: less than 700 operations   ✅
 - Sorting 500 numbers: between 5500 and 7000 operations  :part_alternation_mark:
